@@ -51,7 +51,8 @@
 ;; ===================================
 
 (setq inhibit-startup-message t)    ;; Hide the startup message
-(load-theme 'material t)            ;; Load material theme
+;; (load-theme 'material t) 
+;; Load material theme
 (global-linum-mode t)               ;; Enable line numbers globally
 
 ;; ====================================
@@ -91,12 +92,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("c48551a5fb7b9fc019bf3f61ebf14cf7c9cdca79bcb2a4219195371c02268f11" default))
  '(package-selected-packages
-   '(neotree yasnippet-snippets material-theme better-defaults)))
+   '(sublime-themes neotree yasnippet-snippets material-theme better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
-(set-face-attribute 'default nil :height 160)
+ '(default ((t (:background nil)))))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'spolsky)
+(setq default-frame-alist '((font . "Source Code Pro-14")))
+;; (set-face-attribute 'default nil :height 160)
