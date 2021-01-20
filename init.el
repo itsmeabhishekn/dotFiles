@@ -1,5 +1,5 @@
 ;; .emacs.d/init.el
-
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; ===================================
 ;; MELPA Package Support
 ;; ===================================
