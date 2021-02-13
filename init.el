@@ -1,5 +1,13 @@
 ;; .emacs.d/init.el
+
+;; set transparency
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(add-to-list 'default-frame-alist '(alpha 90 90))
+
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1) 
 ;; ===================================
 ;; MELPA Package Support
 ;; ===================================
@@ -8,7 +16,7 @@
 
 ;; Adds the Melpa archive to the list of available repositories
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") )
 
 ;; Initializes the package infrastructure
 (package-initialize)
@@ -33,7 +41,7 @@
 
 ;; Scans the list in myPackages
 
-(add-to-list 'load-path "/home/sanju/git/emacs-libvterm/")
+(add-to-list 'load-path "/home/void/git/emacs-libvterm/")
 (require 'vterm)
 
 ;; If the package listed is not already installed, install it
@@ -47,8 +55,13 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 ;; ===================================
-;; Basic Customization
+
 ;; ===================================
+
+
+;;Customization.el
+
+
 
 (setq inhibit-startup-message t)    ;; Hide the startup message
 ;; (load-theme 'material t) 
@@ -95,7 +108,7 @@
  '(custom-safe-themes
    '("c48551a5fb7b9fc019bf3f61ebf14cf7c9cdca79bcb2a4219195371c02268f11" default))
  '(package-selected-packages
-   '(sublime-themes neotree yasnippet-snippets material-theme better-defaults)))
+   '(rainbow-identifiers visual-fill-column sublime-themes neotree yasnippet-snippets material-theme better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -104,5 +117,9 @@
  '(default ((t (:background nil)))))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'spolsky)
-(setq default-frame-alist '((font . "Source Code Pro-14")))
+(setq default-frame-alist '((font . "Source Code Pro-16")))
 ;; (set-face-attribute 'default nil :height 160)
+
+;;telega.el
+(add-to-list 'load-path "~/telega.el")
+(require 'telega)
