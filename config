@@ -1,4 +1,4 @@
-exec --no-startup-id picom &
+exec --no-startup-id picom & 
 
 exec_always bash ~/.config/polybar/material/scripts/pywal.sh ~/Dowloads/wallpapers
 
