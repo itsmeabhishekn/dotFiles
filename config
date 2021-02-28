@@ -1,0 +1,211 @@
+exec --no-startup-id picom &
+
+exec_always bash ~/.config/polybar/material/scripts/pywal.sh ~/Dowloads/wallpapers
+
+exec_always --no-startup-id $HOME/.config/polybar/colorblocks/launch.sh
+
+exec xrdb merge ~/git/term/st/xresources
+
+gaps inner  15
+gaps outer  15
+
+for_window [class="^.*"] border pixel 1
+default_border none
+
+set $mod Mod4
+
+# workspace layouts:
+workspace_layout tabbed
+
+# get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+#hiding status bar
+font pango: System San Francisco Display 0
+
+# thin borders
+hide_edge_borders both
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec st
+
+#Lock i3
+
+bindsym $mod+Shift+i exec i3lock -i /home/void/Downloads/veed/wallhaven-7263kv_1920x1080.png
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+D exec --no-startup-id dmenu_run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+exec --no-startup-id picom -cC
+exec --no-startup-id connman-gtk
+exec --no-startup-id nitrogen --restore
+
+#set powersavings for display:
+exec --no-startup-id xset s 480 dpms 600 600 600
+# Desktop notifications
+exec --no-startup-id /usr/bin/dunst
+
+# set floating for apps needing it
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+# welcome and others
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Xsane" instance="xsane"] floating enable
+for_window [class="qt5ct" instance="qt5ct"] floating enable
+for_window [class="calamares"] floating enable
+
+#workspace assigning
+
+set $WS1 "1:term"
+set $WS2 "2:ffox"
+set $WS3 "3:email"
+set $WS4 "4:file"
+set $WS5 "5:music"
+set $WS6 "6:gimp"
+set $WS7 "7:edit"
+set $WS8 "8:torr"
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+exec firefox
+
+# reload the configuration file
+bindsym $mod+Shift+Q reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+X exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+title_align center
+
+set $bg-color               #03506f
+set $inactive-bg-color      #1a1a2e
+set $text-color             #f8f1f1
+set $border-color           #0D0C0C
+set $inactive-border-color  #1a1a2e
+set $inactive-text-color    #676e7d
+set $urgent-bg-color        #e53935
+set $indicator-color        #a0a0a0
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+
+focus_follows_mouse no
+
+# App shortcuts
+bindsym $mod+t exec "/usr/bin/telegram-desktop"
+bindsym $mod+w exec "/usr/bin/firefox"
+bindsym $mod+shift+a exec "/usr/bin/pcmanfm ~/Downloads/MCA"
+bindsym $mod+shift+z exec "/usr/bin/pcmanfm ~/Downloads"
+bindsym $mod+e exec "/usr/bin/emacs"
+bindsym $mod+p exec "/usr/local/bin/spot.sh"
+bindsym Print       exec flameshot full -p ~/Pictures
+bindsym Shift+Print exec flameshot gui -p ~/Pictures
+
+# Lock the system
+bindsym $mod+Esc exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
+
+bindsym F10 exec rofi -show window -line-padding 4 \
+                -lines 6 -padding 50 -hide-scrollbar \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+
+exec --no-startup-id sleep 15 && st
